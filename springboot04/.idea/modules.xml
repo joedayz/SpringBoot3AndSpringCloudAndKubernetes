@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/microservices/product-service/springboot04.microservices.product-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/microservices/product-service/springboot04.microservices.product-service.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/microservices/product-service/springboot04.microservices.product-service.test.iml" filepath="$PROJECT_DIR$/.idea/modules/microservices/product-service/springboot04.microservices.product-service.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/microservices/recommendation-service/springboot04.microservices.recommendation-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/microservices/recommendation-service/springboot04.microservices.recommendation-service.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/microservices/recommendation-service/springboot04.microservices.recommendation-service.test.iml" filepath="$PROJECT_DIR$/.idea/modules/microservices/recommendation-service/springboot04.microservices.recommendation-service.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/microservices/review-service/springboot04.microservices.review-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/microservices/review-service/springboot04.microservices.review-service.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/microservices/review-service/springboot04.microservices.review-service.test.iml" filepath="$PROJECT_DIR$/.idea/modules/microservices/review-service/springboot04.microservices.review-service.test.iml" />
+    </modules>
+  </component>
+</project>
