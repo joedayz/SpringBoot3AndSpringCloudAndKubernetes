@@ -46,7 +46,75 @@ class ReviewServiceApplicationTests extends MySqlTestBase {
           .jsonPath("$.length()").isEqualTo(3)
           .jsonPath("$[2].productId").isEqualTo(productId)
           .jsonPath("$[2].reviewId").isEqualTo(3);
+  }
 
+  @Test
+  void duplicateError() {
+
+    int productId = 1;
+    int reviewId = 1;
+
+    assertEquals(0, repository.count());
+
+    postAndVerifyReview(productId, reviewId, OK)
+        .jsonPath("$.productId").isEqualTo(productId)
+        .jsonPath("$.reviewId").isEqualTo(reviewId);
+
+    assertEquals(1, repository.count());
+
+    postAndVerifyReview(productId, reviewId, UNPROCESSABLE_ENTITY)
+        .jsonPath("$.path").isEqualTo("/review")
+        .jsonPath("$.message").isEqualTo("Duplicate key, Product Id: 1, Review Id:1");
+
+    assertEquals(1, repository.count());
+  }
+
+  @Test
+  void deleteReviews() {
+
+    int productId = 1;
+    int reviewId = 1;
+
+    postAndVerifyReview(productId, reviewId, OK);
+    assertEquals(1, repository.findByProductId(productId).size());
+
+    deleteAndVerifyReviewsByProductId(productId, OK);
+    assertEquals(0, repository.findByProductId(productId).size());
+
+    deleteAndVerifyReviewsByProductId(productId, OK);
+  }
+
+  @Test
+  void getReviewsMissingParameter() {
+
+    getAndVerifyReviewsByProductId("", BAD_REQUEST)
+      .jsonPath("$.path").isEqualTo("/review")
+      .jsonPath("$.message").isEqualTo("Required query parameter 'productId' is not present.");
+  }
+
+  @Test
+  void getReviewsInvalidParameter() {
+
+    getAndVerifyReviewsByProductId("?productId=no-integer", BAD_REQUEST)
+      .jsonPath("$.path").isEqualTo("/review")
+      .jsonPath("$.message").isEqualTo("Type mismatch.");
+  }
+
+  @Test
+  void getReviewsNotFound() {
+
+    getAndVerifyReviewsByProductId("?productId=213", OK)
+      .jsonPath("$.length()").isEqualTo(0);
+  }
+
+  @Test
+  void getReviewsInvalidParameterNegativeValue() {
+
+    int productIdInvalid = -1;
+
+    getAndVerifyReviewsByProductId("?productId=" + productIdInvalid, UNPROCESSABLE_ENTITY)
+      .jsonPath("$.path").isEqualTo("/review")
+      .jsonPath("$.message").isEqualTo("Invalid productId: " + productIdInvalid);
   }
 
   private WebTestClient.BodyContentSpec getAndVerifyReviewsByProductId(int productId, HttpStatus expectedStatus) {
@@ -75,6 +143,12 @@ class ReviewServiceApplicationTests extends MySqlTestBase {
         .expectBody();
   }
 
-
-
+  private WebTestClient.BodyContentSpec deleteAndVerifyReviewsByProductId(int productId, HttpStatus expectedStatus) {
+    return client.delete()
+        .uri("/review?productId=" + productId)
+        .accept(APPLICATION_JSON)
+        .exchange()
+        .expectStatus().isEqualTo(expectedStatus)
+        .expectBody();
+  }
 }
