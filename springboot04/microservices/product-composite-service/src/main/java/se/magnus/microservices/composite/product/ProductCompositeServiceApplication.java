@@ -10,15 +10,14 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
 @ComponentScan("se.magnus")
 public class ProductCompositeServiceApplication {
 
-  @Value("${api.common.title}") String apiTitle;
   @Value("${api.common.version}") String apiVersion;
+  @Value("${api.common.title}") String apiTitle;
   @Value("${api.common.description}") String apiDescription;
   @Value("${api.common.termsOfService}")  String apiTermsOfService;
   @Value("${api.common.license}")         String apiLicense;
@@ -52,8 +51,6 @@ public class ProductCompositeServiceApplication {
             .description(apiExternalDocDesc)
             .url(apiExternalDocUrl));
   }
-
-
 
   @Bean
   RestTemplate restTemplate() {

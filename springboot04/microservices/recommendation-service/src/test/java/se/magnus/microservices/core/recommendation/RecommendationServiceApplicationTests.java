@@ -147,5 +147,5 @@ class RecommendationServiceApplicationTests extends MongoDbTestBase {
         .expectStatus().isEqualTo(expectedStatus)
         .expectBody();
   }
-
+    
 }
