@@ -76,11 +76,40 @@ app:
     host: localhost
     port: 7003
 
+spring.cloud.stream:
+  defaultBinder: rabbit
+  default.contentType: application/json
+  bindings:
+    products-out-0:
+      destination: products
+      producer:
+        required-groups: auditGroup
+    recommendations-out-0:
+      destination: recommendations
+      producer:
+        required-groups: auditGroup
+    reviews-out-0:
+      destination: reviews
+      producer:
+        required-groups: auditGroup
+
+spring.cloud.stream.kafka.binder:
+  brokers: 127.0.0.1
+  defaultBrokerPort: 9092
+
+spring.rabbitmq:
+  host: 127.0.0.1
+  port: 5672
+  username: guest
+  password: guest
+
 logging:
   level:
     root: INFO
     se.magnus: DEBUG
 
+management.endpoint.health.show-details: "ALWAYS"
+management.endpoints.web.exposure.include: "*"
 ---
 spring.config.activate.on-profile: docker
 
@@ -96,3 +125,15 @@ app:
   review-service:
     host: review
     port: 8080
+
+spring.rabbitmq.host: rabbitmq
+
+spring.cloud.stream.kafka.binder.brokers: kafka
+
+---
+spring.config.activate.on-profile: kafka
+
+management.health.rabbit.enabled: false
+spring.cloud.stream.defaultBinder: kafka
+spring.kafka.bootstrap-servers: kafka:9092
+spring.cloud.stream.kafka.binder.replication-factor: 1
