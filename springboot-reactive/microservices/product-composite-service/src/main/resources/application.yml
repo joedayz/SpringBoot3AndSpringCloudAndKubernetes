@@ -131,6 +131,21 @@ spring.rabbitmq.host: rabbitmq
 spring.cloud.stream.kafka.binder.brokers: kafka
 
 ---
+spring.config.activate.on-profile: streaming_partitioned
+
+spring.cloud.stream.bindings.products-out-0.producer:
+  partition-key-expression: headers['partitionKey']
+  partition-count: 2
+
+spring.cloud.stream.bindings.recommendations-out-0.producer:
+  partition-key-expression: headers['partitionKey']
+  partition-count: 2
+
+spring.cloud.stream.bindings.reviews-out-0.producer:
+  partition-key-expression: headers['partitionKey']
+  partition-count: 2
+
+---
 spring.config.activate.on-profile: kafka
 
 management.health.rabbit.enabled: false

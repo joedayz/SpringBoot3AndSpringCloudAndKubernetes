@@ -58,6 +58,22 @@ spring.rabbitmq.host: rabbitmq
 spring.cloud.stream.kafka.binder.brokers: kafka
 
 ---
+spring.config.activate.on-profile: streaming_partitioned
+
+spring.cloud.stream.bindings.messageProcessor-in-0.consumer:
+  partitioned: true
+  instanceCount: 2
+
+---
+spring.config.activate.on-profile: streaming_instance_0
+
+spring.cloud.stream.bindings.messageProcessor-in-0.consumer.instanceIndex: 0
+
+---
+spring.config.activate.on-profile: streaming_instance_1
+
+spring.cloud.stream.bindings.messageProcessor-in-0.consumer.instanceIndex: 1
+---
 
 spring.config.activate.on-profile: kafka
 
