@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/microservices/product-service/springcloud-configuration.microservices.product-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/microservices/product-service/springcloud-configuration.microservices.product-service.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/microservices/product-service/springcloud-configuration.microservices.product-service.test.iml" filepath="$PROJECT_DIR$/.idea/modules/microservices/product-service/springcloud-configuration.microservices.product-service.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/microservices/recommendation-service/springcloud-configuration.microservices.recommendation-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/microservices/recommendation-service/springcloud-configuration.microservices.recommendation-service.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/microservices/recommendation-service/springcloud-configuration.microservices.recommendation-service.test.iml" filepath="$PROJECT_DIR$/.idea/modules/microservices/recommendation-service/springcloud-configuration.microservices.recommendation-service.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/microservices/review-service/springcloud-configuration.microservices.review-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/microservices/review-service/springcloud-configuration.microservices.review-service.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/microservices/review-service/springcloud-configuration.microservices.review-service.test.iml" filepath="$PROJECT_DIR$/.idea/modules/microservices/review-service/springcloud-configuration.microservices.review-service.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/spring-cloud/authorization-server/springcloud-configuration.spring-cloud.authorization-server.test.iml" filepath="$PROJECT_DIR$/.idea/modules/spring-cloud/authorization-server/springcloud-configuration.spring-cloud.authorization-server.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/spring-cloud/eureka-server/springcloud-configuration.spring-cloud.eureka-server.test.iml" filepath="$PROJECT_DIR$/.idea/modules/spring-cloud/eureka-server/springcloud-configuration.spring-cloud.eureka-server.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/spring-cloud/gateway/springcloud-configuration.spring-cloud.gateway.test.iml" filepath="$PROJECT_DIR$/.idea/modules/spring-cloud/gateway/springcloud-configuration.spring-cloud.gateway.test.iml" />
+    </modules>
+  </component>
+</project>
