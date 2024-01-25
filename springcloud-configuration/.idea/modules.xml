@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/microservices/product-composite-service/springcloud-configuration.microservices.product-composite-service.test.iml" filepath="$PROJECT_DIR$/.idea/modules/microservices/product-composite-service/springcloud-configuration.microservices.product-composite-service.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/microservices/product-service/springcloud-configuration.microservices.product-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/microservices/product-service/springcloud-configuration.microservices.product-service.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/microservices/product-service/springcloud-configuration.microservices.product-service.test.iml" filepath="$PROJECT_DIR$/.idea/modules/microservices/product-service/springcloud-configuration.microservices.product-service.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/microservices/recommendation-service/springcloud-configuration.microservices.recommendation-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/microservices/recommendation-service/springcloud-configuration.microservices.recommendation-service.main.iml" />
