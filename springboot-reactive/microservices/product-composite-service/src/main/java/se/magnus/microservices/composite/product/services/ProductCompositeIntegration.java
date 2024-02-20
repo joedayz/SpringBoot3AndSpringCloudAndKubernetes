@@ -92,7 +92,10 @@ public class ProductCompositeIntegration implements ProductService, Recommendati
     String url = productServiceUrl + "/product/" + productId;
       LOG.debug("Will call the getProduct API on URL: {}", url);
 
-    return webClient.get().uri(url).retrieve().bodyToMono(Product.class).log(LOG.getName(), FINE).onErrorMap(WebClientResponseException.class, ex -> handleException(ex));
+    return webClient.get().uri(url).retrieve()
+        .bodyToMono(Product.class)
+        .log(LOG.getName(), FINE)
+        .onErrorMap(WebClientResponseException.class, ex -> handleException(ex));
   }
 
   @Override
@@ -119,7 +122,10 @@ public class ProductCompositeIntegration implements ProductService, Recommendati
     LOG.debug("Will call the getRecommendations API on URL: {}", url);
 
     // Return an empty result if something goes wrong to make it possible for the composite service to return partial responses
-    return webClient.get().uri(url).retrieve().bodyToFlux(Recommendation.class).log(LOG.getName(), FINE).onErrorResume(error -> empty());
+    return webClient.get().uri(url).retrieve()
+        .bodyToFlux(Recommendation.class)
+        .log(LOG.getName(), FINE)
+        .onErrorResume(error -> empty());
   }
 
   @Override
