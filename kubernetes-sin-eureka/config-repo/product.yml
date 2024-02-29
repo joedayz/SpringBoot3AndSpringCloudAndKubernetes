@@ -56,3 +56,14 @@ spring.cloud.stream.bindings.messageProcessor-in-0.consumer.instanceIndex: 0
 spring.config.activate.on-profile: streaming_instance_1
 
 spring.cloud.stream.bindings.messageProcessor-in-0.consumer.instanceIndex: 1
+
+---
+spring.config.activate.on-profile: prod
+
+spring.data.mongodb.host: 172.17.0.1
+
+logging:
+  level:
+    root: WARN
+    se.magnus: WARN
+    org.springframework.data.mongodb.core.MongoTemplate: WARN

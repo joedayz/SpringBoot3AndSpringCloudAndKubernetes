@@ -62,3 +62,15 @@ spring.cloud.stream.bindings.messageProcessor-in-0.consumer.instanceIndex: 0
 spring.config.activate.on-profile: streaming_instance_1
 
 spring.cloud.stream.bindings.messageProcessor-in-0.consumer.instanceIndex: 1
+
+---
+spring.config.activate.on-profile: prod
+
+spring.datasource.url: jdbc:mysql://172.17.0.1:3306/review-db
+
+logging:
+  level:
+    root: WARN
+    se.magnus: WARN
+    org.hibernate.SQL: WARN
+    org.hibernate.type.descriptor.sql.BasicBinder: WARN

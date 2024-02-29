@@ -45,28 +45,6 @@ spring.cloud.gateway.routes:
   predicates:
   - Path=/eureka/**
 
-- id: host_route_200
-  uri: http://httpstat.us
-  predicates:
-  - Host=i.feel.lucky:8080
-  - Path=/headerrouting/**
-  filters:
-  - SetPath=/200
-
-- id: host_route_418
-  uri: http://httpstat.us
-  predicates:
-  - Host=im.a.teapot:8080
-  - Path=/headerrouting/**
-  filters:
-  - SetPath=/418
-
-- id: host_route_501
-  uri: http://httpstat.us
-  predicates:
-  - Path=/headerrouting/**
-  filters:
-  - SetPath=/501
 
 management.endpoint.gateway.enabled: true
 management.endpoint.health.show-details: "ALWAYS"

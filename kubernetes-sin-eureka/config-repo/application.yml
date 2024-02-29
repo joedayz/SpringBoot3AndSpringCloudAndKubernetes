@@ -18,7 +18,8 @@ management.endpoint.health.show-details: "ALWAYS"
 management.endpoints.web.exposure.include: "*"
 management.endpoint.health.probes.enabled: true
 management.endpoint.health.group.readiness.include: readinessState, rabbit, db, mongo
-
+management.health.rabbit.enabled: true
+management.health.kafka.enabled: false
 
 management.zipkin.tracing.endpoint: http://zipkin-server:9411/api/v2/spans
 management.tracing.sampling.probability: 1.0
@@ -43,3 +44,13 @@ spring.config.activate.on-profile: kafka
 spring.cloud.stream.defaultBinder: kafka
 spring.kafka.bootstrap-servers: kafka:9092
 spring.cloud.stream.kafka.binder.replication-factor: 1
+
+management.health.rabbit.enabled: false
+management.health.kafka.enabled: true
+
+---
+spring.config.activate.on-profile: prod
+spring.rabbitmq.host: 172.17.0.1
+
+# Only allow management endpoints over http in production for info, health and circuitbreakerevents
+management.endpoints.web.exposure.include: health,info,circuitbreakerevents
