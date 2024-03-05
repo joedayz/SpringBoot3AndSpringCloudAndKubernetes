@@ -11,12 +11,6 @@ dependencies:
 - name: mysql
   repository: file://../../components/mysql
   version: 1.0.0
-- name: config-server
-  repository: file://../../components/config-server
-  version: 1.0.0
-- name: gateway
-  repository: file://../../components/gateway
-  version: 1.0.0
 - name: auth-server
   repository: file://../../components/auth-server
   version: 1.0.0
@@ -35,5 +29,5 @@ dependencies:
 - name: zipkin-server
   repository: file://../../components/zipkin-server
   version: 1.0.0
-digest: sha256:8735dd5d242e8438f0bfadd87eb1c91e8d731a87152c9a3b7c3daa3dec864667
-generated: "2021-04-29T11:19:03.365615+02:00"
+digest: sha256:64edfd68e793c98678d1219f6f781039e252f227a9efe70ea6043fec6bf54082
+generated: "2024-03-04T21:39:20.207118-05:00"

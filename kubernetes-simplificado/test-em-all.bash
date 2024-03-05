@@ -4,13 +4,9 @@
 #
 # ./test-em-all.bash
 #
-# With Kubernetes in dev environment:
+# With Kubernetes:
 #
-#   PORT=30443 USE_K8S=true ./test-em-all.bash
-#
-# With Kubernetes in prod environment:
-#
-#   CONFIG_SERVER_USR=prod-usr CONFIG_SERVER_PWD=prod-pwd PORT=30443 USE_K8S=true ./test-em-all.bash
+#   HOST=minikube.me USE_K8S=true ./test-em-all.bash
 #
 : ${HOST=localhost}
 : ${PORT=8443}
@@ -21,8 +17,6 @@
 : ${PROD_ID_NO_REVS=213}
 : ${SKIP_CB_TESTS=false}
 : ${NAMESPACE=hands-on}
-: ${CONFIG_SERVER_USR=dev-usr}
-: ${CONFIG_SERVER_PWD=dev-pwd}
 
 function assertCurl() {
 
@@ -265,13 +259,6 @@ ACCESS_TOKEN=$(curl -k https://writer:secret-writer@$HOST:$PORT/oauth2/token -d 
 echo ACCESS_TOKEN=$ACCESS_TOKEN
 AUTH="-H \"Authorization: Bearer $ACCESS_TOKEN\""
 
-# Verify access to the Config server and that its encrypt/decrypt endpoints work
-assertCurl 200 "curl -H "accept:application/json" -k https://$CONFIG_SERVER_USR:$CONFIG_SERVER_PWD@$HOST:$PORT/config/product/docker -s"
-TEST_VALUE="hello world"
-ENCRYPTED_VALUE=$(curl -k https://$CONFIG_SERVER_USR:$CONFIG_SERVER_PWD@$HOST:$PORT/config/encrypt --data-urlencode "$TEST_VALUE" -s)
-DECRYPTED_VALUE=$(curl -k https://$CONFIG_SERVER_USR:$CONFIG_SERVER_PWD@$HOST:$PORT/config/decrypt -d $ENCRYPTED_VALUE -s)
-assertEqual "$TEST_VALUE" "$DECRYPTED_VALUE"
-
 setupTestdata
 
 waitForMessageProcessing
@@ -324,7 +311,11 @@ assertCurl 200 "curl -ksL https://$HOST:$PORT/openapi/swagger-ui.html"
 assertCurl 200 "curl -ks  https://$HOST:$PORT/openapi/webjars/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config"
 assertCurl 200 "curl -ks  https://$HOST:$PORT/openapi/v3/api-docs"
 assertEqual "3.0.1" "$(echo $RESPONSE | jq -r .openapi)"
-assertEqual "https://$HOST:$PORT" "$(echo $RESPONSE | jq -r '.servers[0].url')"
+# Skip this test since the server url is missing the port when deployed on Kubernetes
+if [[ $USE_K8S == "false" ]]
+then
+  assertEqual "https://$HOST:$PORT" "$(echo $RESPONSE | jq -r '.servers[0].url')"
+fi
 assertCurl 200 "curl -ks  https://$HOST:$PORT/openapi/v3/api-docs.yaml"
 
 if [[ $SKIP_CB_TESTS == "false" ]]

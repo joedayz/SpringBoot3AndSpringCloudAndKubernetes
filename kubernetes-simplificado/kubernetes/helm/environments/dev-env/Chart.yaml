@@ -22,10 +22,6 @@ dependencies:
     version: 1.0.0
     repository: file://../../components/mysql
 
-  - name: gateway
-    version: 1.0.0
-    repository: file://../../components/gateway
-
   - name: auth-server
     version: 1.0.0
     repository: file://../../components/auth-server
